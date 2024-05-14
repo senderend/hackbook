@@ -1,0 +1,74 @@
+#!/usr/bin/env sh
+
+
+## Quit if anything goes wrong
+set -e
+
+
+## Location to use: /usr/share/example (default to /)
+location="/usr/local/share/post-exploitation/linux/privEsc"
+binLocation="/usr/local/bin"
+## Package name: example
+package="LPE-Server"
+## Depth: 0-9 (default to 2)
+depth="${2:-2}"
+## List only folders: true/false (default to true)
+folders="${3:-false}"
+
+
+## Package description ~ $ awk -F ': ' '/^Description: / {print $2}' ./example/debian/control
+[ -n "${package}" ] \
+  && description="useful files for when you've landed a shell on a NIX host"
+
+
+## Feedback - banner
+[ -n "${description}" ] \
+  && printf "\n> \033[1;4m${package}\e[0m ~ \033[3m${description}\e[0m\n\n"
+
+## Move to location
+cd "${location}"
+
+
+## List output
+if [ "$( command -v tree )" ]; then
+  ## Check to see if folders only
+  [ "${folders}" = "true" ] \
+    && folder="-d" \
+    || folder=""
+
+  # Add colors for tree
+  if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  fi
+
+  ## Using tree - display output
+  tree ${folder} -L ${depth} --noreport "${location}" -I __pycache__
+else
+  ## Feedback - location
+  echo "${location}"
+
+  ## Check to see if folders only
+  [ "${folders}" = "true" ] \
+    && folder="-type d" \
+    || folder=""
+
+  ## Using find/sed - display output
+  find "${location}" -maxdepth ${depth} -mindepth 1 ${folder} \
+    | sort \
+    | sed -e 's/[^-][^\/]*\//-/g; s/^/  /; s/-/|/' \
+    | grep -v __pycache__
+fi
+
+
+## Check to see if last location is where we want to end up
+## If its not, spawn a new shell (sub shell), so to "move" with "cd"
+## This isn't ideal, but best option for the time being (rather keep everything in parent shell)
+if [ "${OLDPWD}" != "${location}" ]; then
+  ## From kali-menu: exec-in-shell
+  USER=${USER:-$(whoami)}
+  SHELL=${SHELL:-$(getent passwd $USER|cut -d: -f7)}
+  printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '-'   # horizontal rule
+  bash $binLocation/DLstringsLin ${1}
+  printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' '-'   # horizontal rule
+  ${SHELL:-bash} -c "python -m http.server ${1:-80}"
+fi

