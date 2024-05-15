@@ -4,7 +4,7 @@ This is my personal repo of portable and useful pentesting tools. It includes sc
 
 ### Index
 
-[Command Cheat Sheet](/cheatSheet.md)
-[Scripts](/scripts/)
-[Privilege Escalation](/privEsc/)
-[Bash/Zsh Aliases and Functions](/aliases/)
+- [Command Cheat Sheet](/cheatSheet.md)
+- [Scripts](/scripts/)
+- [Privilege Escalation](/privEsc/)
+- [Bash/Zsh Aliases and Functions](/aliases/)
