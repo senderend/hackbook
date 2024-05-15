@@ -2,7 +2,7 @@
 
 # Set options
 default_port="443"
-stage_script_path="/usr/local/share/post-exploitation/windows/privEsc"
+stage_script_path="/usr/local/share/privEsc/windows/scripts"
 
 # Get port number if provided as argument, otherwise use default
 if [ $# -eq 1 ]; then

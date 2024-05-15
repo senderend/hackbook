@@ -5,8 +5,8 @@
 set -e
 
 
-## Location to use: /usr/share/example (default to /)
-location="/usr/local/share/post-exploitation/linux/privEsc"
+## Locations to use:
+location="/usr/local/share/privEsc/linux"
 binLocation="/usr/local/bin"
 ## Package name: example
 package="LPE-Server"

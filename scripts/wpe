@@ -4,7 +4,7 @@
 set -e
 
 ## Location options
-location="/usr/local/share/post-exploitation/windows/privEsc"
+location="/usr/local/share/privEsc/windows"
 binLocation="/usr/local/bin"
 ## Package name: example
 package="WPE-Server"
