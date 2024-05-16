@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
+# Linux Privilege Escalation Server by sender https://github.com/allendemoura
 
 ## Quit if anything goes wrong
 set -e

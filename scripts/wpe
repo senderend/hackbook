@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+# Windows Privilege Escalation Server by sender https://github.com/allendemoura
+
 ## Quit if anything goes wrong
 set -e
 

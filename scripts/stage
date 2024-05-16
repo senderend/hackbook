@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# shell stager by sender https://github.com/allendemoura
+
 # Set options
 default_port="443"
 stage_script_path="/usr/local/share/privEsc/windows/scripts"
