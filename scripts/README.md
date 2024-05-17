@@ -2,6 +2,10 @@
 
 These are designed to work with Kali Linux with a default shell of `zsh` but should also work with bash. To install simply place the files in a location that is in your `$PATH`, I used `/usr/local/bin` which is hard coded into variables at the top of the files that need it. You can change it per the config instructions below.
 
+## Writeup
+
+Check out my [writeup](https://medium.com/@senderend/my-oscp-privilege-escalation-server-scripts-5fc2dda1578c) for an in-depth walkthrough on each of these scripts
+
 ## Installation
 
 For easy startup:
