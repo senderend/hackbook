@@ -6,7 +6,7 @@ Check out my [writeup](https://senderend.medium.com/my-oscp-efficiency-aliases-a
 
 ### Instructions
 
-add these to the end of your .bashrc or .zshrc file, then start a new terminal (or source the .rc file)
+add these to the end of your .zshrc file, then start a new terminal (or source the .rc file)
 
 ```bash
 #-------------aliases and functions by sender https://github.com/allendemoura--------------------
