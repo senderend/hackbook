@@ -9,7 +9,7 @@ Check out my [writeup](https://senderend.medium.com/my-oscp-efficiency-aliases-a
 add these to the end of your .zshrc file, then start a new terminal (or source the .rc file)
 
 ```bash
-#-------------aliases and functions by sender https://github.com/allendemoura--------------------
+#-------------aliases and functions by sender https://github.com/allendemoura --------------------
 # shared history config
 setopt inc_append_history
 #setopt share_history
