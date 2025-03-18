@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Windows Privilege Escalation Server companion by sender https://github.com/allendemoura
+# Windows Privilege Escalation Server companion by sender https://github.com/senderend
 
 # Regular Colors
 BLACK='\033[0;30m'
