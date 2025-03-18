@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# shell stager by sender https://github.com/allendemoura
+# shell stager by sender https://github.com/senderend
 
 # Set options
 default_port="443"
