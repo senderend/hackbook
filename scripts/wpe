@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-# Windows Privilege Escalation Server by sender https://github.com/allendemoura
+# Windows Privilege Escalation Server by sender https://github.com/senderend
 
 ## Quit if anything goes wrong
 set -e
