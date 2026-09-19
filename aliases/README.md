@@ -31,6 +31,7 @@ alias oscp='cd ~/Documents/OSCP'
 function mkcd() { mkdir -p "$1" && cd "$1"; }
 alias f='function _myfind() { root="${2:-/}"; find "$root" -iname "*$1*" 2>/dev/null; }; _myfind'
 alias ff='function _myfind2() { root="${2:-/}"; find "$root" -iname "$1" 2>/dev/null; }; _myfind2'
+alias b64d='base64 -d <<<'
 ketch() { nc -lvnp "${1:-443}"; }
 rketch() { rlwrap nc -lvnp "${1:-443}"; }
 wketch() { stty raw -echo; (stty size; cat) | nc -lvnp "${1:-443}"; }
